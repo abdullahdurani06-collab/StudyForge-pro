@@ -1,8 +1,8 @@
 import React from 'react';
-import { Calculator, FileText, ListChecks, ArrowUpRight } from 'lucide-react';
+import { Calculator, FileText, ListChecks, ArrowUpRight, BookOpen, Code2 } from 'lucide-react';
 import { motion } from 'motion/react';
 
-export type ToolType = 'calculator' | 'notes' | 'mcq';
+export type ToolType = 'calculator' | 'notes' | 'mcq' | 'flashcards' | 'explainer';
 
 interface ToolsSectionProps {
   onSelectTool: (tool: ToolType) => void;
@@ -28,6 +28,15 @@ const tools = [
     bgColor: 'bg-purple-50/50',
   },
   {
+    id: 'explainer' as ToolType,
+    title: 'Code Explainer',
+    description: 'Paste code to get a line-by-line breakdown and optimization tips.',
+    icon: Code2,
+    gradient: 'from-amber-500 to-amber-600',
+    iconColor: 'text-amber-600',
+    bgColor: 'bg-amber-50/50',
+  },
+  {
     id: 'mcq' as ToolType,
     title: 'AI MCQ Generator',
     description: 'Automatically create multiple choice questions from any textbook excerpt or transcript.',
@@ -35,21 +44,30 @@ const tools = [
     gradient: 'from-emerald-500 to-emerald-600',
     iconColor: 'text-emerald-600',
     bgColor: 'bg-emerald-50/50',
+  },
+  {
+    id: 'flashcards' as ToolType,
+    title: 'AI Flashcards',
+    description: 'Convert any study material into interactive, flip-style flashcards for efficient active recall.',
+    icon: BookOpen,
+    gradient: 'from-indigo-500 to-indigo-600',
+    iconColor: 'text-indigo-600',
+    bgColor: 'bg-indigo-50/50',
   }
 ];
 
 export default function ToolsSection({ onSelectTool }: ToolsSectionProps) {
   return (
-    <section id="tools" className="py-24">
+    <section id="tools" className="py-24 transition-all duration-300 ease-in-out">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-5 tracking-tight">Powerful Tools for Students</h2>
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto font-medium">
+        <div className="text-center mb-20 transition-all duration-300 ease-in-out">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-50 mb-5 tracking-tight transition-colors">Powerful Tools for Students</h2>
+          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-medium transition-colors">
             Everything you need to succeed academically, organized in one place.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {tools.map((tool, index) => (
             <motion.div
               key={tool.id}
@@ -64,8 +82,8 @@ export default function ToolsSection({ onSelectTool }: ToolsSectionProps) {
               <div className={`w-16 h-16 ${tool.bgColor} ${tool.iconColor} rounded-[20px] flex items-center justify-center mb-8 border border-white/50 shadow-inner group-hover:scale-110 transition-transform duration-500`}>
                 <tool.icon className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">{tool.title}</h3>
-              <p className="text-slate-500 leading-relaxed mb-10 font-medium">
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight transition-colors">{tool.title}</h3>
+              <p className="text-slate-500 dark:text-slate-400 leading-relaxed mb-10 font-medium transition-colors">
                 {tool.description}
               </p>
               

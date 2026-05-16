@@ -3,6 +3,7 @@ import { FileText, Sparkles, Loader2, Copy, Check, Box, Upload, AlertCircle, Dow
 import { motion, AnimatePresence } from 'motion/react';
 import { extractTextFromFile } from '../../services/fileParser';
 import { generateNotes } from '../../services/geminiService';
+import { getFriendlyErrorMessage } from '../../lib/errorUtils';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
@@ -44,7 +45,7 @@ export default function NotesGenerator() {
       const result = await generateNotes(transcript);
       setNotes(result);
     } catch (err: any) {
-      setError(err.message || "Something went wrong.");
+      setError(getFriendlyErrorMessage(err));
     } finally {
       setIsGenerating(false);
     }
@@ -92,7 +93,7 @@ export default function NotesGenerator() {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 h-full items-stretch">
+    <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr_250px] gap-8 h-full items-stretch">
       {/* INPUT SECTION */}
       <section className="saas-card p-8 space-y-6 flex flex-col h-full border-slate-100">
         <div className="flex justify-between items-center">
@@ -234,6 +235,23 @@ export default function NotesGenerator() {
           </AnimatePresence>
         </div>
       </section>
+
+      {/* Sidebar Ad Area */}
+      <aside className="hidden lg:flex flex-col gap-6">
+        <div className="flex-1 bg-slate-50 border border-dashed border-slate-200 rounded-3xl flex flex-col items-center justify-center p-6 text-center">
+          <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-300 mb-4">Advertisement</div>
+          <div className="w-full h-full bg-slate-100/50 rounded-2xl flex items-center justify-center text-[10px] font-bold text-slate-400">
+            {/* <ins class="adsbygoogle" ... ></ins> */}
+            Ad Slot: Sidebar_Tool_A
+          </div>
+        </div>
+        <div className="p-6 bg-blue-50/50 border border-blue-100 rounded-3xl">
+          <h4 className="text-[10px] font-black uppercase tracking-widest text-blue-600 mb-2">Pro Tip</h4>
+          <p className="text-xs font-medium text-blue-800 leading-relaxed">
+            Upgrade to Pro for unlimited notes and priority AI processing during peak exam seasons.
+          </p>
+        </div>
+      </aside>
     </div>
   );
 }

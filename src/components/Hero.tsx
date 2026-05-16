@@ -8,11 +8,11 @@ interface HeroProps {
 
 export default function Hero({ onStartUsingTools }: HeroProps) {
   return (
-    <section className="relative pt-44 pb-24 overflow-hidden">
+    <section className="relative pt-44 pb-24 bg-white text-slate-900 dark:bg-[#030712] dark:text-slate-50 transition-colors duration-300 overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full -z-10 pointer-events-none">
-        <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-100/30 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-purple-100/20 blur-[100px] rounded-full" />
+        <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-100/30 dark:bg-blue-900/10 blur-[120px] rounded-full" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-purple-100/20 dark:bg-purple-900/10 blur-[100px] rounded-full" />
       </div>
 
       <div className="max-w-4xl mx-auto px-6 text-center">
@@ -29,7 +29,7 @@ export default function Hero({ onStartUsingTools }: HeroProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-5xl md:text-7xl font-bold text-slate-900 leading-[1.1] mb-8 tracking-[-0.03em]"
+          className="text-5xl md:text-7xl font-extrabold text-slate-900 dark:text-white leading-[1.1] mb-8 tracking-[-0.03em]"
         >
           Save Time and Study <br /> Smarter with Free Student Tools
         </motion.h1>

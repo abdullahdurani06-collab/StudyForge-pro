@@ -6,23 +6,29 @@
   --color-brand: #0061FF;
 }
 
+@variant dark (&:where(.dark, .dark *));
+
 @layer base {
+  body, div, header, nav, section, main, footer, aside, p, h1, h2, h3, h4, h5, h6, span, label, input, textarea, button {
+    @apply transition-colors duration-500 ease-in-out;
+  }
+
   body {
-    @apply font-sans text-slate-900 bg-white antialiased overflow-x-hidden;
+    @apply font-sans text-slate-900 bg-white dark:bg-slate-950 dark:text-slate-50 antialiased overflow-x-hidden;
   }
 }
 
 @layer components {
   .saas-card {
-    @apply bg-white border border-slate-100 rounded-[24px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgb(0,0,0,0.06)] transition-all duration-300;
+    @apply bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-[24px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgb(0,0,0,0.06)] transition-all duration-300;
   }
   
   .btn-primary {
-    @apply px-6 py-3 bg-[#0061FF] hover:bg-[#0052D9] text-white rounded-xl font-semibold transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2;
+    @apply px-6 py-3 bg-[#0061FF] dark:bg-blue-600 hover:bg-[#0052D9] dark:hover:bg-blue-500 text-white rounded-xl font-semibold transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2;
   }
 
   .btn-outline {
-    @apply px-6 py-3 bg-white border border-slate-200 text-slate-600 rounded-xl font-semibold hover:bg-slate-50 transition-all flex items-center justify-center gap-2 text-sm;
+    @apply px-6 py-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 rounded-xl font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-all flex items-center justify-center gap-2 text-sm;
   }
   
   .custom-scrollbar::-webkit-scrollbar {
@@ -32,6 +38,20 @@
     background: transparent;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    @apply bg-slate-200 rounded-full hover:bg-slate-300;
+    @apply bg-slate-200 dark:bg-slate-700 rounded-full hover:bg-slate-300 dark:hover:bg-slate-600;
+  }
+
+  /* 3D Transform Utilities */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  .rotate-y-180 {
+    transform: rotateY(180deg);
   }
 }

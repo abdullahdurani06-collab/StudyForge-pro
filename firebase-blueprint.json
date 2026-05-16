@@ -1,0 +1,39 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "Stores user profile information and preferences.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The unique identifier for the user" },
+        "email": { "type": "string", "description": "User's email address" },
+        "name": { "type": "string", "description": "User's display name" },
+        "avatar": { "type": "string", "description": "URL to user's avatar" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "email"]
+    },
+    "UserSetting": {
+      "title": "User Setting",
+      "description": "Stores user-specific settings and application state.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "theme": { "type": "string", "enum": ["light", "dark"] },
+        "currency": { "type": "string", "enum": ["PKR", "INR", "USD"] },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/users/{userId}/settings/config": {
+      "schema": "UserSetting",
+      "description": "User specific configurations"
+    }
+  }
+}
